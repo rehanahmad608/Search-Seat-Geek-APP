@@ -27,9 +27,9 @@ class _TypeAheadPageScreenState extends State<TypeAheadPageScreen> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade300,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.grey.shade300,
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: const Text(
@@ -99,14 +99,23 @@ class _TypeAheadInputState extends State<TypeAheadInput> {
             Expanded(
               child: TextFormField(
                 controller: _textEditingController,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                ),
                 decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.grey.shade500,
+                  ),
                   labelText: LocaleKeys.type_ahead_input_label.tr(),
                   labelStyle: const TextStyle(
+                    color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.w400,
                   ),
                   isDense: true,
-                  fillColor: Colors.grey.shade500,
                 ),
                 onChanged: (value) =>
                     bloc.add(TypeAheadInputChangedEvent(value)),
@@ -181,7 +190,10 @@ class _SuggestionListState extends State<SuggestionList> {
             return Center(
                 child: Text(
               LocaleKeys.type_ahead_suggestion_list_no_events.tr(),
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400),
             ));
           }
           final events = state.events;
@@ -237,12 +249,17 @@ class EventWidget extends StatelessWidget {
       onTap: () => bloc.add(EventTappedEvent(event)),
       minLeadingWidth: 80,
       leading: EventImage(image: event.image, id: event.id),
-      title: Text(event.title, maxLines: 1, overflow: TextOverflow.ellipsis),
+      title: Text(event.title,
+          style: const TextStyle(color: Colors.black),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(event.venue, maxLines: 1),
-          Text(event.date.toStr, maxLines: 1),
+          Text(event.venue,
+              style: const TextStyle(color: Colors.black), maxLines: 1),
+          Text(event.date.toStr,
+              style: const TextStyle(color: Colors.black), maxLines: 1),
         ],
       ),
     );

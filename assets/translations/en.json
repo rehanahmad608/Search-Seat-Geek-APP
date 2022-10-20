@@ -2,7 +2,7 @@
     "type_ahead":{
         "title":"type_ahead",
         "input":{
-            "label":"Search",
+            "label":"Search Here",
             "cancel":"Cancel",
             "error":{
                 "too_long":"Amount of symbols should be less then 100 symbols"

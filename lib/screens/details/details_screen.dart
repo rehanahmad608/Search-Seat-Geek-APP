@@ -19,11 +19,26 @@ class DetailsScreen extends StatelessWidget {
       builder: (context, state) {
         final event = state.selectedEvent;
         if (event == null) {
-          return Center(child: Text(LocaleKeys.details_empty_event.tr()));
+          return Center(
+              child: Text(
+            LocaleKeys.details_empty_event.tr(),
+            style: const TextStyle(color: Colors.black),
+          ));
         }
         return Scaffold(
+          backgroundColor: Colors.grey.shade300,
           appBar: AppBar(
-            title: Text(event.title, maxLines: 2),
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                )),
+            backgroundColor: Colors.grey.shade300,
+            title: Text(event.title,
+                style: const TextStyle(color: Colors.black), maxLines: 2),
           ),
           body: SafeArea(
             child: DetailWidget(eventModel: event),
@@ -52,10 +67,15 @@ class DetailWidget extends StatelessWidget {
           DetailEventImage(image: eventModel.image, id: eventModel.id),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(eventModel.date.toStr,
-                style: Theme.of(context).textTheme.headlineSmall),
+            child: Text(
+              eventModel.date.toStr,
+              style: const TextStyle(color: Colors.black),
+            ),
           ),
-          Text(eventModel.venue, style: Theme.of(context).textTheme.caption),
+          Text(
+            eventModel.venue,
+            style: const TextStyle(color: Colors.black),
+          ),
         ],
       ),
     );
